@@ -14,12 +14,16 @@ typedef struct Vector3_int {
 } Vector3_int;
 
 Vector3_float *Vector3_float_init(float x, float y, float z);
-double Vector3_float_length(Vector3_float *in);
+double Vector3_float_length(Vector3_float const *in);
 Vector3_float *Vector3_float_normalize(Vector3_float const *in);
 
 Vector3_double *Vector3_double_init(double x, double y, double z);
-double Vector3_double_length(Vector3_double *in);
-Vector3_float *Vector3_double_normalize(Vector3_double const *in);
+double Vector3_double_length(Vector3_double const *in);
+Vector3_double *Vector3_double_normalize(Vector3_double const *in);
 
 Vector3_int *Vector3_int_init(int x, int y, int z);
-double Vector3_int_length(Vector3_int *in);
+double Vector3_int_length(Vector3_int const *in);
+/* Note that this one will create a Vector3_float from a Vector3_int input */
+Vector3_float *Vector3_int_normalize(Vector3_int const *in);
+
+#endif
