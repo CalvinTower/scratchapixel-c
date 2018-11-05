@@ -28,10 +28,14 @@ double Vector3_float_length(Vector3_float const *in)
 
 Vector3_float *Vector3_float_normalize(Vector3_float const *in)
 {
+  double magnitude = Vector3_float_length(in);
+  if(magnitude == 0) {
+    return NULL;
+  }
   /* Create a temporary variable for the inverted magnitude of the
      incoming vector; multiplication is faster, and should be favored
      for such a commonly used function */
-  double inverted_magnitude = (1 / Vector3_float_length(in));
+  double inverted_magnitude = 1 / magnitude;
 
   /* I'm not sure if multiplying by a double will leave it promoted
      to a double when it gets passed to the funciton, so I'm giving
@@ -43,6 +47,11 @@ Vector3_float *Vector3_float_normalize(Vector3_float const *in)
     return NULL;
   }
   return out;
+}
+
+float Vector3_float_dot(Vector3_float const *a, Vector3_float const *b)
+{
+  return (a->x * b->x) + (a->y * b->y) + (a->z * b->z);
 }
 
 /*
@@ -71,12 +80,16 @@ double Vector3_double_length(Vector3_double const *in)
 
 Vector3_double *Vector3_double_normalize(Vector3_double const *in)
 {
+  double magnitude = Vector3_double_length(in);
+  if(magnitude == 0) {
+    return NULL;
+  }
   /* "Maybe this is premature optimization", I hear you say. "Creating
      a temporary variable to use multiplication instead of division
      obfuscates your code and makes it less readable" Yeah sure, but
      the instructional material has me do it explicitly, so I'm going
      for it. */
-  double inverted_magnitude = (1 / Vector3_double_length(in));
+  double inverted_magnitude = 1 / magnitude;
 
   Vector3_double *out = Vector3_double_init(in->x * inverted_magnitude,
                                             in->y * inverted_magnitude,
@@ -85,6 +98,11 @@ Vector3_double *Vector3_double_normalize(Vector3_double const *in)
     return NULL;
   }
   return out;
+}
+
+double Vector3_double_dot(Vector3_double const *a, Vector3_double const *b)
+{
+  return (a->x * b->x) + (a->y * b->y) + (a->z * b->z);
 }
 
 /*
@@ -116,9 +134,14 @@ double Vector3_int_length(Vector3_int const *in)
    precision in a data type, float is closer to int than double. */
 Vector3_float *Vector3_int_normalize(Vector3_int const *in)
 {
+  double magnitude = Vector3_int_length(in);
+  if(magnitude == 0) {
+    return NULL;
+  }
   /* Again we create the temporary variable */
   double inverted_magnitude = (1 / Vector3_int_length(in));
 
+  /* And again the explcit casts */
   Vector3_float *out = Vector3_float_init((float) in->x * inverted_magnitude,
                                           (float) in->y * inverted_magnitude,
                                           (float) in->z * inverted_magnitude);
@@ -126,4 +149,9 @@ Vector3_float *Vector3_int_normalize(Vector3_int const *in)
     return NULL;
   }
   return out;
+}
+
+int Vector3_int_dot(Vector3_int const *a, Vector3_int const *b)
+{
+  return (a->x * b->x) + (a->y * b->y) + (a->z * b->z);
 }
