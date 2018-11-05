@@ -106,6 +106,32 @@ Vec3_float *Vec3_float_cross(Vec3_float const *a, Vec3_float const *b)
   return out;
 }
 
+Vec3_float *Vec3_Matrix_float_multiply(Vec3_float const *vec, Matrix_float const *mat)
+{
+  if(Matrix_float_get_dimension(mat) != 3) {
+    return NULL;
+  }
+  /* DUMBEST VERSION */
+  float x_out, y_out, z_out;
+  x_out = (vec->x * Matrix_float_get_entry(mat, 0, 0, NULL)) +
+    (vec->y * Matrix_float_get_entry(mat, 1, 0, NULL)) +
+    (vec->z * Matrix_float_get_entry(mat, 2, 0, NULL));
+
+  y_out = (vec->x * Matrix_float_get_entry(mat, 0, 1, NULL)) +
+    (vec->y * Matrix_float_get_entry(mat, 1, 1, NULL)) +
+    (vec->z * Matrix_float_get_entry(mat, 2, 1, NULL));
+
+  z_out = (vec->x * Matrix_float_get_entry(mat, 0, 2, NULL)) +
+    (vec->y * Matrix_float_get_entry(mat, 1, 2, NULL)) +
+    (vec->z * Matrix_float_get_entry(mat, 2, 2, NULL));
+
+  Vec3_float *out = Vec3_float_init(x_out, y_out, z_out);
+  if(out == NULL) {
+    return NULL;
+  }
+  return out;
+}
+
 void Vec3_float_destroy(Vec3_float *in)
 {
   free(in);
@@ -210,6 +236,32 @@ Vec3_double *Vec3_double_cross(Vec3_double const *a, Vec3_double const *b)
   return out;
 }
 
+Vec3_double *Vec3_Matrix_double_multiply(Vec3_double const *vec, Matrix_double const *mat)
+{
+  if(Matrix_double_get_dimension(mat) != 3) {
+    return NULL;
+  }
+  /* DUMBEST VERSION */
+  double x_out, y_out, z_out;
+  x_out = (vec->x * Matrix_double_get_entry(mat, 0, 0, NULL)) +
+    (vec->y * Matrix_double_get_entry(mat, 1, 0, NULL)) +
+    (vec->z * Matrix_double_get_entry(mat, 2, 0, NULL));
+
+  y_out = (vec->x * Matrix_double_get_entry(mat, 0, 1, NULL)) +
+    (vec->y * Matrix_double_get_entry(mat, 1, 1, NULL)) +
+    (vec->z * Matrix_double_get_entry(mat, 2, 1, NULL));
+
+  z_out = (vec->x * Matrix_double_get_entry(mat, 0, 2, NULL)) +
+    (vec->y * Matrix_double_get_entry(mat, 1, 2, NULL)) +
+    (vec->z * Matrix_double_get_entry(mat, 2, 2, NULL));
+
+  Vec3_double *out = Vec3_double_init(x_out, y_out, z_out);
+  if(out == NULL) {
+    return NULL;
+  }
+  return out;
+}
+
 void Vec3_double_destroy(Vec3_double *in)
 {
   free(in);
@@ -308,6 +360,32 @@ Vec3_int *Vec3_int_cross(Vec3_int const *a, Vec3_int const *b)
   z = (a->x * b->y) - (a->y * b->x);
 
   Vec3_int *out = Vec3_int_init(x, y, z);
+  if(out == NULL) {
+    return NULL;
+  }
+  return out;
+}
+
+Vec3_int *Vec3_Matrix_int_multiply(Vec3_int const *vec, Matrix_int const *mat)
+{
+  if(Matrix_int_get_dimension(mat) != 3) {
+    return NULL;
+  }
+  /* DUMBEST VERSION */
+  int x_out, y_out, z_out;
+  x_out = (vec->x * Matrix_int_get_entry(mat, 0, 0, NULL)) +
+    (vec->y * Matrix_int_get_entry(mat, 1, 0, NULL)) +
+    (vec->z * Matrix_int_get_entry(mat, 2, 0, NULL));
+
+  y_out = (vec->x * Matrix_int_get_entry(mat, 0, 1, NULL)) +
+    (vec->y * Matrix_int_get_entry(mat, 1, 1, NULL)) +
+    (vec->z * Matrix_int_get_entry(mat, 2, 1, NULL));
+
+  z_out = (vec->x * Matrix_int_get_entry(mat, 0, 2, NULL)) +
+    (vec->y * Matrix_int_get_entry(mat, 1, 2, NULL)) +
+    (vec->z * Matrix_int_get_entry(mat, 2, 2, NULL));
+
+  Vec3_int *out = Vec3_int_init(x_out, y_out, z_out);
   if(out == NULL) {
     return NULL;
   }

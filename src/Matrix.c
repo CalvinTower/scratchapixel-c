@@ -31,6 +31,11 @@ Matrix_float *Matrix_float_init(int dimension)
   return out;
 }
 
+int Matrix_float_get_dimension(Matrix_float const *in)
+{
+  return in->dimension;
+}
+
 float Matrix_float_get_entry(Matrix_float const *in, int x, int y, int *error)
 {
   if(x > (in->dimension - 1) || y > (in->dimension - 1)) {
@@ -113,6 +118,11 @@ Matrix_double *Matrix_double_init(int dimension)
   return out;
 }
 
+int Matrix_double_get_dimension(Matrix_double const *in)
+{
+  return in->dimension;
+}
+
 double Matrix_double_get_entry(Matrix_double const *in, int x, int y, int *error)
 {
   if(x > (in->dimension - 1) || y > (in->dimension - 1)) {
@@ -193,6 +203,11 @@ Matrix_int *Matrix_int_init(int dimension)
   }
 
   return out;
+}
+
+int Matrix_int_get_dimension(Matrix_int const *in)
+{
+  return in->dimension;
 }
 
 int Matrix_int_get_entry(Matrix_int const *in, int x, int y, int *error)
