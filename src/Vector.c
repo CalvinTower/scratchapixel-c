@@ -54,6 +54,25 @@ float Vec3_float_dot(Vec3_float const *a, Vec3_float const *b)
   return (a->x * b->x) + (a->y * b->y) + (a->z * b->z);
 }
 
+Vec3_float *Vec3_float_cross(Vec3_float const *a, Vec3_float const *b)
+{
+  /* You'd better believe that I'll never in my life remember the
+     order for this algorithm */
+  float x, y, z;
+  x = (a->y * b->z) - (a->z * b->y);
+  y = (a->z * b->x) - (a->x * b->z);
+  z = (a->x * b->y) - (a->y * b->x);
+
+  Vec3_float *out = Vec3_float_init(x, y, z);
+  /* Returning it as-is would be exactly the same without this next
+     check, since if it comes out NULL then it would be returning
+     NULL, but I want the check there for clarity. It's good practice. */
+  if(out == NULL) {
+    return NULL;
+  }
+  return out;
+}
+
 /*
 ================================================================================
 Vec3_double functions
@@ -105,6 +124,20 @@ double Vec3_double_dot(Vec3_double const *a, Vec3_double const *b)
   return (a->x * b->x) + (a->y * b->y) + (a->z * b->z);
 }
 
+Vec3_double *Vec3_double_cross(Vec3_double const *a, Vec3_double const *b)
+{
+  double x, y, z;
+  x = (a->y * b->z) - (a->z * b->y);
+  y = (a->z * b->x) - (a->x * b->z);
+  z = (a->x * b->y) - (a->y * b->x);
+
+  Vec3_double *out = Vec3_double_init(x, y, z);
+  if(out == NULL) {
+    return NULL;
+  }
+  return out;
+}
+
 /*
 ================================================================================
 Vec3_int functions
@@ -154,4 +187,18 @@ Vec3_float *Vec3_int_normalize(Vec3_int const *in)
 int Vec3_int_dot(Vec3_int const *a, Vec3_int const *b)
 {
   return (a->x * b->x) + (a->y * b->y) + (a->z * b->z);
+}
+
+Vec3_int *Vec3_int_cross(Vec3_int const *a, Vec3_int const *b)
+{
+  int x, y, z;
+  x = (a->y * b->z) - (a->z * b->y);
+  y = (a->z * b->x) - (a->x * b->z);
+  z = (a->x * b->y) - (a->y * b->x);
+
+  Vec3_int *out = Vec3_int_init(x, y, z);
+  if(out == NULL) {
+    return NULL;
+  }
+  return out;
 }
