@@ -81,6 +81,22 @@ Matrix_float *Matrix_float_multiply(Matrix_float const *a, Matrix_float const *b
   return out;
 }
 
+Matrix_float *Matrix_float_transpose(Matrix_float const *in)
+{
+  Matrix_float *out Matrix_float_init(in->dimension);
+  if(out == NULL) {
+    return NULL;
+  }
+
+  int dim = in->dimension;
+  for(int y = 0; y < dim; y++) {
+    for(int x = 0; x < dim; x++) {
+      Matrix_float_set_entry(out, Matrix_float_get_entry(in, x, y, NULL), x, y, NULL);
+    }
+  }
+  return out;
+}
+
 void Matrix_float_destroy(Matrix_float *in)
 {
   free(in->entries);
@@ -163,6 +179,22 @@ Matrix_double *Matrix_double_multiply(Matrix_double const *a, Matrix_double cons
           *(a->entries + x + (i * out->dimension)) * *(b->entries + i + (y * out->dimension));
       }
       Matrix_double_set_entry(out, value, x, y, NULL);
+    }
+  }
+  return out;
+}
+
+Matrix_double *Matrix_double_transpose(Matrix_double const *in)
+{
+  Matrix_double *out Matrix_double_init(in->dimension);
+  if(out == NULL) {
+    return NULL;
+  }
+
+  int dim = in->dimension;
+  for(int y = 0; y < dim; y++) {
+    for(int x = 0; x < dim; x++) {
+      Matrix_double_set_entry(out, Matrix_double_get_entry(in, x, y, NULL), x, y, NULL);
     }
   }
   return out;
@@ -256,6 +288,22 @@ Matrix_int *Matrix_int_multiply(Matrix_int const *a, Matrix_int const *b)
           *(a->entries + x + (i * out->dimension)) * *(b->entries + i + (y * out->dimension));
       }
       Matrix_int_set_entry(out, value, x, y, NULL);
+    }
+  }
+  return out;
+}
+
+Matrix_int *Matrix_int_transpose(Matrix_int const *in)
+{
+  Matrix_int *out Matrix_int_init(in->dimension);
+  if(out == NULL) {
+    return NULL;
+  }
+
+  int dim = in->dimension;
+  for(int y = 0; y < dim; y++) {
+    for(int x = 0; x < dim; x++) {
+      Matrix_int_set_entry(out, Matrix_int_get_entry(in, x, y, NULL), x, y, NULL);
     }
   }
   return out;
