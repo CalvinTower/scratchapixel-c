@@ -4,13 +4,13 @@
 
 /*
 ================================================================================
- Vector3_float functions
+ Vec3_float functions
 ================================================================================
 */
 
-Vector3_float *Vector3_float_init(float x, float y, float z)
+Vec3_float *Vec3_float_init(float x, float y, float z)
 {
-  Vector3_float *res = malloc(sizeof(Vector3_float));
+  Vec3_float *res = malloc(sizeof(Vec3_float));
   if(res == NULL) {
     return NULL;
   }
@@ -21,14 +21,14 @@ Vector3_float *Vector3_float_init(float x, float y, float z)
   return res;
 }
 
-double Vector3_float_length(Vector3_float const *in)
+double Vec3_float_length(Vec3_float const *in)
 {
   return sqrt((in->x * in->x) + (in->y * in->y) + (in->z * in->z));
 }
 
-Vector3_float *Vector3_float_normalize(Vector3_float const *in)
+Vec3_float *Vec3_float_normalize(Vec3_float const *in)
 {
-  double magnitude = Vector3_float_length(in);
+  double magnitude = Vec3_float_length(in);
   if(magnitude == 0) {
     return NULL;
   }
@@ -40,7 +40,7 @@ Vector3_float *Vector3_float_normalize(Vector3_float const *in)
   /* I'm not sure if multiplying by a double will leave it promoted
      to a double when it gets passed to the funciton, so I'm giving
      it an explicit cast for safety */
-  Vector3_float *out = Vector3_float_init((float) in->x * inverted_magnitude,
+  Vec3_float *out = Vec3_float_init((float) in->x * inverted_magnitude,
                                           (float) in->y * inverted_magnitude,
                                           (float) in->z * inverted_magnitude);
   if(out == NULL) {
@@ -49,20 +49,20 @@ Vector3_float *Vector3_float_normalize(Vector3_float const *in)
   return out;
 }
 
-float Vector3_float_dot(Vector3_float const *a, Vector3_float const *b)
+float Vec3_float_dot(Vec3_float const *a, Vec3_float const *b)
 {
   return (a->x * b->x) + (a->y * b->y) + (a->z * b->z);
 }
 
 /*
 ================================================================================
-Vector3_double functions
+Vec3_double functions
 ================================================================================
 */
 
-Vector3_double *Vector3_double_init(double x, double y, double z)
+Vec3_double *Vec3_double_init(double x, double y, double z)
 {
-  Vector3_double *res = malloc(sizeof(Vector3_double));
+  Vec3_double *res = malloc(sizeof(Vec3_double));
   if(res == NULL) {
     return NULL;
   }
@@ -73,14 +73,14 @@ Vector3_double *Vector3_double_init(double x, double y, double z)
   return res;
 }
 
-double Vector3_double_length(Vector3_double const *in)
+double Vec3_double_length(Vec3_double const *in)
 {
   return sqrt((in->x * in->x) + (in->y * in->y) + (in->z * in->z));
 }
 
-Vector3_double *Vector3_double_normalize(Vector3_double const *in)
+Vec3_double *Vec3_double_normalize(Vec3_double const *in)
 {
-  double magnitude = Vector3_double_length(in);
+  double magnitude = Vec3_double_length(in);
   if(magnitude == 0) {
     return NULL;
   }
@@ -91,7 +91,7 @@ Vector3_double *Vector3_double_normalize(Vector3_double const *in)
      for it. */
   double inverted_magnitude = 1 / magnitude;
 
-  Vector3_double *out = Vector3_double_init(in->x * inverted_magnitude,
+  Vec3_double *out = Vec3_double_init(in->x * inverted_magnitude,
                                             in->y * inverted_magnitude,
                                             in->z * inverted_magnitude);
   if(out == NULL) {
@@ -100,20 +100,20 @@ Vector3_double *Vector3_double_normalize(Vector3_double const *in)
   return out;
 }
 
-double Vector3_double_dot(Vector3_double const *a, Vector3_double const *b)
+double Vec3_double_dot(Vec3_double const *a, Vec3_double const *b)
 {
   return (a->x * b->x) + (a->y * b->y) + (a->z * b->z);
 }
 
 /*
 ================================================================================
-Vector3_int functions
+Vec3_int functions
 ================================================================================
 */
 
-Vector3_int *Vector3_int_init(int x, int y, int z)
+Vec3_int *Vec3_int_init(int x, int y, int z)
 {
-  Vector3_int *res = malloc(sizeof(Vector3_int));
+  Vec3_int *res = malloc(sizeof(Vec3_int));
   if(res == NULL) {
     return NULL;
   }
@@ -124,25 +124,25 @@ Vector3_int *Vector3_int_init(int x, int y, int z)
   return res;
 }
 
-double Vector3_int_length(Vector3_int const *in)
+double Vec3_int_length(Vec3_int const *in)
 {
   return sqrt((in->x * in->x) + (in->y * in->y) + (in->z * in->z));
 }
 
-/* DANGER This function returns a Vector3_float *, not a Vector3_int *
+/* DANGER This function returns a Vec3_float *, not a Vec3_int *
    It returns the float version because in terms of amount of
    precision in a data type, float is closer to int than double. */
-Vector3_float *Vector3_int_normalize(Vector3_int const *in)
+Vec3_float *Vec3_int_normalize(Vec3_int const *in)
 {
-  double magnitude = Vector3_int_length(in);
+  double magnitude = Vec3_int_length(in);
   if(magnitude == 0) {
     return NULL;
   }
   /* Again we create the temporary variable */
-  double inverted_magnitude = (1 / Vector3_int_length(in));
+  double inverted_magnitude = (1 / Vec3_int_length(in));
 
   /* And again the explcit casts */
-  Vector3_float *out = Vector3_float_init((float) in->x * inverted_magnitude,
+  Vec3_float *out = Vec3_float_init((float) in->x * inverted_magnitude,
                                           (float) in->y * inverted_magnitude,
                                           (float) in->z * inverted_magnitude);
   if(out == NULL) {
@@ -151,7 +151,7 @@ Vector3_float *Vector3_int_normalize(Vector3_int const *in)
   return out;
 }
 
-int Vector3_int_dot(Vector3_int const *a, Vector3_int const *b)
+int Vec3_int_dot(Vec3_int const *a, Vec3_int const *b)
 {
   return (a->x * b->x) + (a->y * b->y) + (a->z * b->z);
 }
