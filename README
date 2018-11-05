@@ -3,3 +3,9 @@
 A C implementation of the C++ code hosted on scratchapixel.com
 
 I'm doing this for fun and for learning.
+
+Day 2 update: I'm starting to understand the draw of C++. So far I've
+written two classes and about six hundred lines of code that would
+have gone much quicker if I had been using C++. I'm beginning also to
+understand the benefits of object-oriented programming, albeit a much
+simplified version without polymorphism or inheritence.
