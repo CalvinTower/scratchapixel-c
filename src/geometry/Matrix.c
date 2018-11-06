@@ -91,6 +91,9 @@ Matrix_float *Matrix_float_transpose(Matrix_float const *in)
   int dim = in->dimension;
   for(int y = 0; y < dim; y++) {
     for(int x = 0; x < dim; x++) {
+      /* get_ and set_entry functions only use the error pointer for
+         bounds checking of x and y values, but we know the dimension
+         is the same for both matrices, so it doesn't need the error checking. */
       Matrix_float_set_entry(out, Matrix_float_get_entry(in, x, y, NULL), x, y, NULL);
     }
   }
