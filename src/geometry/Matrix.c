@@ -39,23 +39,27 @@ int Matrix_float_get_dimension(Matrix_float const *in)
 float Matrix_float_get_entry(Matrix_float const *in, int x, int y, int *error)
 {
   if(x > (in->dimension - 1) || y > (in->dimension - 1)) {
-    *error = 1;
+    if(error)
+      *error = 1;
     return 0;
   }
   y *= in->dimension;
-  *error = 0;
+  if(error)
+    *error = 0;
   return *(in->entries + x + y);
 }
 
 void Matrix_float_set_entry(Matrix_float *in, float value, int x, int y, int *error)
 {
   if(x > (in->dimension - 1) || y > (in->dimension - 1)) {
-    *error = 1;
+    if(error)
+      *error = 1;
     return;
   }
   y *= in->dimension;
   *(in->entries + x + y) = value;
-  *error = 0;
+  if(error)
+    *error = 0;
 }
 
 Matrix_float *Matrix_float_multiply(Matrix_float const *a, Matrix_float const *b)
@@ -156,12 +160,14 @@ double Matrix_double_get_entry(Matrix_double const *in, int x, int y, int *error
 void Matrix_double_set_entry(Matrix_double *in, double value, int x, int y, int *error)
 {
   if(x > (in->dimension - 1) || y > (in->dimension - 1)) {
-    *error = 1;
+    if(error)
+      *error = 1;
     return;
   }
   y *= in->dimension;
   *(in->entries + x + y) = value;
-  *error = 0;
+  if(error)
+    *error = 0;
 }
 
 Matrix_double *Matrix_double_multiply(Matrix_double const *a, Matrix_double const *b)
@@ -248,23 +254,27 @@ int Matrix_int_get_dimension(Matrix_int const *in)
 int Matrix_int_get_entry(Matrix_int const *in, int x, int y, int *error)
 {
   if(x > (in->dimension - 1) || y > (in->dimension - 1)) {
-    *error = 1;
+    if(error)
+      *error = 1;
     return 0;
   }
   y *= in->dimension;
-  *error = 0;
+  if(error)
+    *error = 0;
   return *(in->entries + x + y);
 }
 
 void Matrix_int_set_entry(Matrix_int *in, int value, int x, int y, int *error)
 {
   if(x > (in->dimension - 1) || y > (in->dimension - 1)) {
-    *error = 1;
+    if(error)
+      *error = 1;
     return;
   }
   y *= in->dimension;
   *(in->entries + x + y) = value;
-  *error = 0;
+  if(error)
+    *error = 0;
 }
 
 Matrix_int *Matrix_int_multiply(Matrix_int const *a, Matrix_int const *b)
