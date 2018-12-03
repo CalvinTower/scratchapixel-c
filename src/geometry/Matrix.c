@@ -91,7 +91,7 @@ Matrix_float *Matrix_float_multiply(Matrix_float const *a, Matrix_float const *b
 
 Matrix_float *Matrix_float_transpose(Matrix_float const *in)
 {
-  Matrix_float *out Matrix_float_init(in->dimension);
+  Matrix_float *out = Matrix_float_init(in->dimension);
   if(out == NULL) {
     return NULL;
   }
@@ -205,7 +205,7 @@ Matrix_double *Matrix_double_multiply(Matrix_double const *a, Matrix_double cons
 
 Matrix_double *Matrix_double_transpose(Matrix_double const *in)
 {
-  Matrix_double *out Matrix_double_init(in->dimension);
+  Matrix_double *out = Matrix_double_init(in->dimension);
   if(out == NULL) {
     return NULL;
   }
@@ -322,7 +322,7 @@ Matrix_int *Matrix_int_multiply(Matrix_int const *a, Matrix_int const *b)
 
 Matrix_int *Matrix_int_transpose(Matrix_int const *in)
 {
-  Matrix_int *out Matrix_int_init(in->dimension);
+  Matrix_int *out = Matrix_int_init(in->dimension);
   if(out == NULL) {
     return NULL;
   }
